@@ -232,6 +232,8 @@ func WS(ctx *gin.Context) {
 			for _, msg := range msgs {
 				wsConn.WriteMessage(websocket.TextMessage, []byte(msg))
 			}
+			global.Redis.Del(context.Background(), claim.Subject)
+
 		} else {
 			rsp, _ := json.Marshal(gin.H{
 				"type":    "normal",

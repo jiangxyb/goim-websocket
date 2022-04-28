@@ -1,6 +1,5 @@
 package Initialize
 
-
 import (
 	"context"
 	"fmt"
@@ -12,14 +11,15 @@ import (
 )
 
 var once sync.Once
+
 func InitRedis() {
-	addr := fmt.Sprintf("%v:%v",global.SrvConfig.RedisInfo.IP,global.SrvConfig.RedisInfo.Port)
+	addr := fmt.Sprintf("%v:%v", global.SrvConfig.RedisInfo.IP, global.SrvConfig.RedisInfo.Port)
 	once.Do(func() {
 		global.Redis = redis.NewClient(&redis.Options{
-			Network:            "tcp",
-			Addr:               addr,
-			Password:           global.SrvConfig.RedisInfo.PassWord,
-			DB:                 2,
+			Network:      "tcp",
+			Addr:         addr,
+			Password:     global.SrvConfig.RedisInfo.PassWord,
+			DB:           0,
 			PoolSize:     15,
 			MinIdleConns: 10,
 			DialTimeout:  5 * time.Second,
