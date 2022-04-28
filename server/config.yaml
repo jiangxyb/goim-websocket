@@ -1,0 +1,9 @@
+jwt:
+  privateKeyPath: ./config/private.key
+  publicKeyPath: ./config/public.key
+port: 9288
+name: user-web
+redis:
+  ip: xxxx
+  port: xxxxx
+  password:

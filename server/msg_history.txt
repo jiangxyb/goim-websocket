@@ -1,0 +1,2 @@
+from:lufei:to:namei,goudan
+msg:hello,nihao
