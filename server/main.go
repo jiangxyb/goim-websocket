@@ -8,7 +8,6 @@ import (
 	"im/handle"
 	"im/middlewares"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -22,24 +21,26 @@ func main() {
 		return true
 	})
 	r := gin.Default()
+	// 跨域
 	r.Use(middlewares.Cors())
 
-	r.GET("/test", func(c *gin.Context) {
-		c.JSON(http.StatusOK,gin.H{
-			"msg":"ok",
-			"code":"200",
-		})
-	})
-	r.POST("/api/register",handle.Register)
-	r.GET("/api/list",handle.UserList)
-	r.POST("/api/login",handle.Login)
-	r.GET("/api/ws",handle.WS)
-	r.GET("/api/loginlist",handle.LoginList)
+	// 注册
+	r.POST("/api/register", handle.Register)
+	// 已注册用户列表
+	r.GET("/api/list", handle.UserList)
+	// 登录
+	r.POST("/api/login", handle.Login)
+	// ws连接
+	r.GET("/api/ws", handle.WS)
+	// 获取登录列表(目前没用到)
+	r.GET("/api/loginlist", handle.LoginList)
+	// JWT
 	r.Use(middlewares.JWT())
-	r.GET("/api/user",handle.UserInfo)
+	// 获取用户名
+	r.GET("/api/user", handle.UserInfo)
 
 	// 启动运行
 	if err := r.Run(fmt.Sprintf(":%d", global.SrvConfig.Port)); err != nil {
-		log.Fatal("启动失败：",err)
+		log.Fatal("启动失败：", err)
 	}
 }

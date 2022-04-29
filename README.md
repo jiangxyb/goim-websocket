@@ -46,7 +46,7 @@ vue结合Element UI实现的简单的单路由界面,本人对前端非专业（
 ```json
 {
    "type": "auth",
-   "content": w-token,
+   "content": "w-token",
    "from": "",
    "to": []
 }
