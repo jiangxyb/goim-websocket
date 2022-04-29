@@ -300,6 +300,7 @@ export default {
           let msg = {direction: wsInfo.from, dt: wsInfo.content}
           this.msglist.push(msg)
         }else if(wsInfo.type == 'ok'){
+          this.msglist = []
           let msg = {direction: '连接', dt: wsInfo.content}
           this.msglist.push(msg)
         }
